@@ -1,14 +1,14 @@
 import express from "express";
-import { users } from "./mocks/users.ts";
+import CustomerRouter from "./routes/customer.router.ts";
 
 const app = express();
 
 app.use(express.json());
 
-app.get("/users", (_request, response) => {
-	response.status(200).json(users);
-});
+app.use("/customers", CustomerRouter);
 
 app.use((_request, response) => {
 	response.status(404).json({ message: "NOT FOUND" });
 });
+
+app.listen(Number(process.env.PORT));

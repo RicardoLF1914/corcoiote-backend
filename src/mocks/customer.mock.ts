@@ -14,7 +14,7 @@ export const customers: Customer[] = [
 		status: true,
 	},
 	{
-		id: 2,
+		id: 3,
 		name: "Neymar Jr",
 		email: "neymarjr@email.com",
 		status: false,
