@@ -1,3 +1,4 @@
+import { NotFoundError } from "../errors/index.ts";
 import { invoices } from "../mocks/invoice.mock.ts";
 import type { CreateInvoice, Invoice, UpdateInvoice } from "../types.ts";
 
@@ -8,7 +9,7 @@ export function findAllInvoices(): Invoice[] {
 export function findInvoiceById(id: number): Invoice {
 	const invoice = invoices.find((c) => c.id === id);
 
-	if (!invoice) throw new Error("Fatura não encontrada");
+	if (!invoice) throw new NotFoundError(`Fatura de id ${id} não encontrada`);
 
 	return invoice;
 }
@@ -33,7 +34,7 @@ export function modifyInvoice(
 ): Invoice {
 	const invoice = invoices.find((c) => c.id === id);
 
-	if (!invoice) throw new Error("Fatura não encontrada");
+	if (!invoice) throw new NotFoundError(`Fatura de id ${id} não encontrada`);
 
 	if (value) invoice.value = value;
 	if (customer_id) invoice.customer_id = customer_id;
@@ -45,7 +46,8 @@ export function modifyInvoice(
 export function removeInvoice(id: number): void {
 	const index = invoices.findIndex((c) => c.id === id);
 
-	if (index === -1) throw new Error("Fatura não encontrada");
+	if (index === -1)
+		throw new NotFoundError(`Fatura de id ${id} não encontrada`);
 
 	invoices.splice(index, 1);
 }

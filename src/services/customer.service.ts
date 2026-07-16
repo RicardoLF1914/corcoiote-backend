@@ -1,3 +1,4 @@
+import { NotFoundError } from "../errors/index.ts";
 import { customers } from "../mocks/customer.mock.ts";
 import type { CreateCustomer, Customer, UpdateCustomer } from "../types.ts";
 
@@ -8,7 +9,7 @@ export function findAllCustomers(): Customer[] {
 export function findCustomerById(id: number): Customer {
 	const customer = customers.find((c) => c.id === id);
 
-	if (!customer) throw new Error("Cliente não encontrado");
+	if (!customer) throw new NotFoundError(`Cliente de id ${id} não encontrado`);
 
 	return customer;
 }
@@ -32,7 +33,7 @@ export function modifyCustomer(
 ): Customer {
 	const customer = customers.find((c) => c.id === id);
 
-	if (!customer) throw new Error("Cliente não encontrado");
+	if (!customer) throw new NotFoundError(`Cliente de id ${id} não encontrado`);
 
 	if (name) customer.name = name;
 	if (email) customer.email = email;
@@ -44,7 +45,8 @@ export function modifyCustomer(
 export function removeCustomer(id: number): void {
 	const index = customers.findIndex((c) => c.id === id);
 
-	if (index === -1) throw new Error("Cliente não encontrado");
+	if (index === -1)
+		throw new NotFoundError(`Cliente de id ${id} não encontrado`);
 
 	customers.splice(index, 1);
 }
