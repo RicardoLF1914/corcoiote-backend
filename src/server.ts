@@ -1,11 +1,12 @@
 import express from "express";
+import PinoHttp from "pino-http";
+import logger from "./lib/logger.ts";
 import errorHandler from "./middlewares/errorHandler.ts";
-import requestLogger from "./middlewares/requestLogger.ts";
 import CustomerRouter from "./routes/customer.router.ts";
 
 const app = express();
 
-app.use(requestLogger);
+app.use();
 
 app.use(express.json());
 
