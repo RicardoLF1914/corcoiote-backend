@@ -1,4 +1,6 @@
+import { Prisma } from "@prisma/client/extension";
 import { NotFoundError } from "../errors/index.ts";
+import { prisma } from "../lib/prisma.ts";
 import { customers } from "../mocks/customer.mock.ts";
 import type {
 	CreateCustomer,
