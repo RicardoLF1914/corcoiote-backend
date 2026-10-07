@@ -12,9 +12,9 @@
 		"esModuleInterop": true,
 		"skipLibCheck": true,
 		"forceConsistentCasingInFileNames": true,
-		"types": ["node"]
+		"types": ["node", "jest"]
 	},
 	"rootDir": "src",
 	"outDir": "dist",
-	"include": ["src", "prisma.config.ts"]
+	"include": ["src", "tests", "prisma.config.ts"]
 }
